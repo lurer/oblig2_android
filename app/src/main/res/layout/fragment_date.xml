@@ -1,0 +1,19 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/activity_style"
+    android:id="@+id/date_fragment"
+    tools:context="com.example.s198599.s198599_mappe2.fragments.DateFragment">
+
+
+    <Button
+        android:id="@+id/open_date_picker"
+        style="@style/small_button_style"
+        android:text="@string/btn_open_date_picker"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:layout_row="8"
+        android:layout_column="0"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"/>
+
+</RelativeLayout>

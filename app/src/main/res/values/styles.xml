@@ -1,0 +1,43 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!--<item name="android:actionBarStyle">@style/MyActionBar</item>-->
+
+    </style>
+<!--
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/activity_background_color</item>
+        <item name="android:titleTextStyle">@style/MyActionBarTitle</item>
+    </style>
+
+    <style name="MyActionBarTitle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/text_color</item>
+    </style> -->
+
+
+    <style name="activity_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/draw_activity_backround</item>
+    </style>
+
+    <style name="big_button_style">
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">70dp</item>
+        <item name="android:background">@drawable/draw_button_style</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <style name="small_button_style">
+
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/draw_button_style</item>
+        <item name="android:textColor">@color/text_color</item>
+
+    </style>
+
+
+</resources>

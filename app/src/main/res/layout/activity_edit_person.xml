@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/activity_style"
+    tools:context="com.example.s198599.s198599_mappe2.registration_activities.EditPerson">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/info_update_person"
+            android:textColor="@color/text_color"
+            android:textSize="20dp"
+            android:id="@+id/txt_info"
+            />
+
+        <fragment
+            android:name="com.example.s198599.s198599_mappe2.fragments.PersonRegistrationFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/person_fragment"
+            android:layout_below="@+id/txt_info"/>
+
+
+        <fragment
+            android:name="com.example.s198599.s198599_mappe2.fragments.DateFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/date_fragment"
+            android:layout_below="@+id/person_fragment"/>
+
+        <Button
+            style="@style/small_button_style"
+            android:text="@string/btn_cancel_text"
+            android:id="@+id/btn_cancel"
+            android:layout_below="@+id/date_fragment"
+            />
+        <Button
+            style="@style/small_button_style"
+            android:text="@string/btn_save_text"
+            android:id="@+id/btn_update"
+            android:layout_below="@+id/date_fragment"
+            android:layout_toRightOf="@+id/btn_cancel"
+            android:layout_marginLeft="10dp"/>
+    </RelativeLayout>
+
+</RelativeLayout>
