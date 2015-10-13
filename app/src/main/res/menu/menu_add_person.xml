@@ -2,6 +2,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.s198599.s198599_mappe2.registration_activities.AddPerson">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/action_back"
+        android:title="@string/action_back"
+        android:icon="@drawable/back_action"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/action_add_person"
+        android:title="@string/action_add_person"
+        android:icon="@drawable/save_action"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:icon="@drawable/settings_action"
+        app:showAsAction="always" />
 </menu>

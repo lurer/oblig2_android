@@ -37,8 +37,10 @@
     <string name="info_detail_person">Detailed information</string>
 
 
-
-
+    <string name="action_add_person">Add</string>
+    <string name="action_delete_person">Delete</string>
+    <string name="action_update_person">Update</string>
+    <string name="action_back">Back</string>
 
 
 

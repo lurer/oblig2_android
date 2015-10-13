@@ -2,6 +2,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.s198599.s198599_mappe2.MyFriends">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/action_back"
+        android:title="@string/action_back"
+        android:icon="@drawable/back_action"
+
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/addperson"
+        android:title="@string/info_add_person"
+        app:showAsAction="always"
+        android:icon="@drawable/addperson_action"/>
+
+    <item android:id="@+id/deleteperson"
+        android:title="@string/btn_delete_text"
+        app:showAsAction="always"
+        android:icon="@drawable/delete_action"/>
+
+
+
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:icon="@drawable/settings_action"
+        app:showAsAction="always" />
 </menu>

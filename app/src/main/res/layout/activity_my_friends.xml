@@ -4,19 +4,14 @@
     tools:context="com.example.s198599.s198599_mappe2.MyFriends">
 
 
-    <fragment
-        android:name="com.example.s198599.s198599_mappe2.fragments.CrudButtonFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/crud_fragment"
-        android:layout_centerHorizontal="true"/>
 
-    <fragment
+
+   <!-- <fragment
         android:name="com.example.s198599.s198599_mappe2.fragments.PersonListFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/person_list"
         android:layout_below="@id/crud_fragment"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"/> -->
 
 </RelativeLayout>

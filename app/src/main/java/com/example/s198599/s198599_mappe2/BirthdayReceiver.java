@@ -3,6 +3,10 @@ package com.example.s198599.s198599_mappe2;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.example.s198599.s198599_mappe2.services.BirthdayService;
 
 public class BirthdayReceiver extends BroadcastReceiver {
     public BirthdayReceiver() {
@@ -10,8 +14,12 @@ public class BirthdayReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        // TODO: This method is called when the BroadcastReceiver is receiving
-        // an Intent broadcast.
-        throw new UnsupportedOperationException("Not yet implemented");
+        Log.d("Birthday", "BirthdayReceiver - startet");
+
+        Intent i = new Intent(context, BirthdayService.class);
+        context.startService(i);
+
+        Log.d("Birthday", "BirthdayReceiver - ferdig med init");
+
     }
 }

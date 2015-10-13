@@ -1,0 +1,28 @@
+
+
+BirthdayService
+    - Notification må vise at service har starter og kjører
+    - Må lage funksjonalitet som håndterer bursdager daglig
+        - Hver dag skal det sjekkes hvilken venner som har bursdag.
+        - Alarmmanager styrer scheduling - Ref widgetfoiler.pdf
+        - Gi notifikasjon når det sendes en melding.
+
+
+Populering av liste
+    - Lese om Adaptere.
+
+SQL/ORM
+    - Opprette database og implementere ORM og CRUD
+
+
+
+Fragmentkommunikasjon
+    - Kommunikasjon mellom aktivitet og fragmenter
+
+
+
+- Bruke ActionBarActivity
+
+-Aktivitet implementerer lytter/callback som ligger i fragmentet.
+-Fragment bruker callback for å sende data til Activitet.
+    - Evt kan activitet extende FragmentActivity
