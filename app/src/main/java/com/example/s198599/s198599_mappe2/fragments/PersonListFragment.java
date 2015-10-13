@@ -1,5 +1,6 @@
 package com.example.s198599.s198599_mappe2.fragments;
 
+import com.example.s198599.s198599_mappe2.models.PersonAdapter;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class PersonListFragment extends ListFragment {
 
-    private ArrayAdapter<Person> adapter;
+    private PersonAdapter adapter;
     private AppCompatActivity listener;
 
     public PersonListFragment() {
@@ -34,9 +35,7 @@ public class PersonListFragment extends ListFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         ListView lv = (ListView)view.findViewById(R.id.person_list_view);
-
         lv.setAdapter(adapter);
-
     }
 
     @Nullable
@@ -56,11 +55,7 @@ public class PersonListFragment extends ListFragment {
         dummyList.add(new Person("Espen", "Zaal", "98653942", Calendar.getInstance()));
         dummyList.add(new Person("Truls", "Pettersen", "90123456", Calendar.getInstance()));
 
-        /*List<String> dummyList = new ArrayList<>();
-        dummyList.add("Test1");
-        dummyList.add("Test2");*/
-
-        adapter = new ArrayAdapter<Person>(getActivity(),
+        adapter = new PersonAdapter(getActivity(),
                 android.R.layout.simple_list_item_1, android.R.id.text1, dummyList);
 
 
@@ -76,7 +71,7 @@ public class PersonListFragment extends ListFragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        //mListener = null;
+
     }
 
     @Override

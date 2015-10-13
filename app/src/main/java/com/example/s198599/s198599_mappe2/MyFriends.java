@@ -18,8 +18,9 @@ public class MyFriends extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_my_friends, menu);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         return super.onCreateOptionsMenu(menu);
@@ -31,6 +32,7 @@ public class MyFriends extends AppCompatActivity {
         Intent i;
 
         switch (item.getItemId()){
+
             case R.id.action_back:
                 i = new Intent(this, MainActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
