@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,6 +75,13 @@ public class PersonRegistrationFragment extends Fragment{
             lastNameEdit.setText(p.getLastName());
             phoneNumberEdit.setText(p.getPhoneNr());
         }
+    }
+
+    public void setTextBoxesUneditable(){
+
+        firstNameEdit.setFocusable(false);
+        lastNameEdit.setFocusable(false);
+        phoneNumberEdit.setFocusable(false);
     }
 
 }

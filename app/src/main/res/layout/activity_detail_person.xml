@@ -6,13 +6,16 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/info_update_person"
+            android:text="@string/info_detail_person"
             android:textColor="@color/text_color"
+            android:layout_centerHorizontal="true"
+            android:editable="false"
             android:textSize="20dp"
             android:id="@+id/txt_info"
             />
@@ -22,14 +25,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/person_fragment"
-            android:layout_below="@+id/txt_info"/>
+            android:layout_below="@+id/txt_info"
+            android:layout_marginBottom="20dp"/>
 
-        <Button
-            style="@style/small_button_style"
-            android:text="@string/btn_back_text"
-            android:id="@+id/btn_back"
-            android:layout_below="@+id/person_fragment"
-            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/person_date_info"
+            android:text="@string/txt_birth_date"
+            android:textColor="@color/text_color"
+            android:editable="false"
+            android:layout_below="@+id/person_fragment"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:id="@+id/person_date"
+            android:textColor="@color/text_color"
+            android:layout_toRightOf="@+id/person_date_info"
+            android:layout_below="@+id/person_fragment"/>
 
     </RelativeLayout>
 

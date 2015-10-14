@@ -4,9 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_activity_my_friends"
+        android:gravity="center_horizontal"
+        android:textColor="@color/text_color"
+        android:textSize="24dp"
+        android:layout_marginBottom="10dp"/>
+
+
     <ListView
         android:id="@+id/person_list_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </ListView>
