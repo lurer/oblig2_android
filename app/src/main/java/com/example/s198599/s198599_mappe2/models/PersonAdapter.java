@@ -85,8 +85,8 @@ public class PersonAdapter extends ArrayAdapter<Person> {
         element.lastName.setText(mList.get(position).getLastName());
         element.phone.setText(mList.get(position).getPhoneNr());
 
-        SimpleDateFormat df = StaticLib.DATE_FORMAT;
-        element.date.setText(df.format(mList.get(position).getBirthDate()));
+
+        element.date.setText(StaticLib.getDateAsString(mList.get(position).getBirthDate()));
 
 
         //lytter på om checkbox er endret/trykket og gir beskjed via checkboxCallback om hendelsen

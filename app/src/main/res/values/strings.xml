@@ -11,7 +11,7 @@
     <string name="title_activity_my_friends">My friends</string>
     <string name="title_activity_add_person">Add Friend</string>
     <string name="title_activity_edit_person">Edit Friend</string>
-    <string name="title_activity_detail_person">Details</string>
+
 
 
     <string name="btn_ok_text">OK</string>
@@ -23,7 +23,7 @@
     <string name="btn_add_text">Add</string>
     <string name="btn_edit_text">Edit</string>
     <string name="btn_delete_text">Delete</string>
-    <string name="btn_details_text">Details</string>
+
 
     <string name="txt_first_name">First name</string>
     <string name="txt_last_name">Last name</string>
@@ -33,8 +33,8 @@
 
 
     <string name="info_add_person">Add a friend to your list</string>
-    <string name="info_update_person">Update your friend\'s contact info</string>
-    <string name="info_detail_person">Detailed information</string>
+    <string name="info_update_person">Update Information</string>
+
 
 
     <string name="action_add_person">Add</string>

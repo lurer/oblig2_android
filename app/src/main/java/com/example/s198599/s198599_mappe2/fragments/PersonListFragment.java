@@ -17,6 +17,7 @@ import com.example.s198599.s198599_mappe2.models.Person;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -76,8 +77,9 @@ public class PersonListFragment extends ListFragment
 
         List<Person> dummyList = new ArrayList<>();
 
-        dummyList.add(new Person("Espen", "Zaal", "98653942", new Date()));
-        dummyList.add(new Person("Truls", "Pettersen", "90123456", new Date()));
+        Calendar today = Calendar.getInstance();
+        dummyList.add(new Person("Espen", "Zaal", "98653942", today));
+        dummyList.add(new Person("Truls", "Pettersen", "90123456", today));
 
         adapter = new PersonAdapter(getActivity(),
                 android.R.layout.simple_list_item_1, android.R.id.text1, dummyList);

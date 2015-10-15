@@ -6,13 +6,15 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/info_add_person"
-            android:textColor="@color/text_color"
+            android:textColor="@color/text_color_alt"
+            android:layout_centerHorizontal="true"
             android:textSize="20dp"
             android:id="@+id/txt_info"
             />
@@ -23,13 +25,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/person_fragment"
             android:layout_below="@+id/txt_info"/>
-
-        <fragment
-            android:name="com.example.s198599.s198599_mappe2.fragments.DateFragment"
-            android:id="@+id/date_fragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/person_fragment"/>
 
 
     </RelativeLayout>

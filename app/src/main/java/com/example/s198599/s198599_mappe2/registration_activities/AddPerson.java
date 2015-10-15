@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.example.s198599.s198599_mappe2.MyFriends;
 import com.example.s198599.s198599_mappe2.R;
@@ -14,6 +15,7 @@ public class AddPerson extends AppCompatActivity {
 
     private PersonRegistrationFragment regForm;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +23,8 @@ public class AddPerson extends AppCompatActivity {
 
         regForm = (PersonRegistrationFragment)getFragmentManager().
                 findFragmentById(R.id.person_fragment);
+
+
 
     }
 

@@ -61,11 +61,6 @@
             android:name=".registration_activities.EditPerson"
             android:label="@string/title_activity_edit_person" >
         </activity>
-        <activity
-            android:parentActivityName=".MyFriends"
-            android:name=".registration_activities.DetailPerson"
-            android:label="@string/title_activity_detail_person" >
-        </activity>
     </application>
 
 

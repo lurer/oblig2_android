@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import com.example.s198599.s198599_mappe2.fragments.PersonListFragment;
 import com.example.s198599.s198599_mappe2.models.Person;
 import com.example.s198599.s198599_mappe2.registration_activities.AddPerson;
-import com.example.s198599.s198599_mappe2.registration_activities.DetailPerson;
 import com.example.s198599.s198599_mappe2.registration_activities.EditPerson;
 
 import java.util.ArrayList;
@@ -73,9 +72,7 @@ public class MyFriends extends AppCompatActivity
     public void onItemclicked(Person p) {
         Log.d("Birthday", "Item clicked in ListView");
 
-        Intent i = new Intent(this, DetailPerson.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(i);
+        //onEditPersonClicked(p);
     }
 
     @Override
@@ -112,14 +109,15 @@ public class MyFriends extends AppCompatActivity
         Log.d("Birthday", "Editing " + p.getFirstName() + " " + p.getLastName());
 
         Intent i = new Intent(this, EditPerson.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        //i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        i.putExtra("person", p);
+        Log.d("Birthday", "Lagt til person i Intent");
         startActivity(i);
-    }
-
-
-    private void updateCheckedItemList(int position, boolean isAdding){
 
     }
+
+
 
 
 }
