@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.s198599.s198599_mappe2.ApplicationState;
 import com.example.s198599.s198599_mappe2.MyFriends;
 import com.example.s198599.s198599_mappe2.R;
 import com.example.s198599.s198599_mappe2.fragments.PersonRegistrationFragment;
@@ -18,10 +17,12 @@ public class EditPerson extends AppCompatActivity {
     private PersonRegistrationFragment regForm;
     private Person updatingPerson;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_person);
+
 
         Log.d("Birthday", "I EditPerson");
         Intent thisIntent = this.getIntent();
@@ -55,6 +56,7 @@ public class EditPerson extends AppCompatActivity {
                 startActivity(i);
                 break;
             case R.id.action_add_person:
+                getUpdatedPerson();
                 break;
             case R.id.action_settings:
                 break;
@@ -62,4 +64,15 @@ public class EditPerson extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void getUpdatedPerson(){
+        updatingPerson = regForm.getUpdatedPerson();
+        //Log.d("Birthday", "Edited person: " + updatingPerson.toString());
+        Intent i = new Intent(this, MyFriends.class);
+        i.putExtra("updatedPerson", updatingPerson);
+        setResult(RESULT_OK, i);
+        finish();
+    }
+
 }

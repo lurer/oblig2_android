@@ -1,7 +1,6 @@
 package com.example.s198599.s198599_mappe2.fragments;
 
 
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -9,15 +8,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.example.s198599.s198599_mappe2.R;
-import com.example.s198599.s198599_mappe2.lib.StaticLib;
 import com.example.s198599.s198599_mappe2.models.Person;
 
 import java.util.Calendar;
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 
 /**
@@ -31,14 +29,10 @@ public class PersonRegistrationFragment extends Fragment{
     private EditText lastNameEdit;
     private EditText phoneNumberEdit;
     private Calendar displayedBirthDate;
-    private Calendar editedBirthDate;
-    private Button dateButton;
 
+    private DatePicker datePicker;
 
-    public PersonRegistrationFragment() {
-        // Required empty public constructor
-
-    }
+    public PersonRegistrationFragment() {}
 
 
     @Override
@@ -60,39 +54,25 @@ public class PersonRegistrationFragment extends Fragment{
         firstNameEdit = (EditText)getView().findViewById(R.id.edit_first_name);
         lastNameEdit = (EditText)getView().findViewById(R.id.edit_last_name);
         phoneNumberEdit = (EditText)getView().findViewById(R.id.edit_phone_number);
-        dateButton = (Button)getView().findViewById(R.id.open_date_picker);
-
-        final MyDateDialog myDateDialog = new MyDateDialog();
-
-        dateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editedBirthDate = displayedBirthDate;
-                Log.d("Birthday", "Clicked Birth date button");
-                myDateDialog.show(getFragmentManager(), "datePicker");
-
-                editedBirthDate = myDateDialog.getDate();
-                if (!editedBirthDate.equals(displayedBirthDate)) {
-                    displayedBirthDate = editedBirthDate;
-                }
-                if(editedBirthDate != null){
-                    Log.d("Birthday", "Displayed date: " + StaticLib.getDateAsString(displayedBirthDate));
-                    Log.d("Birthday", "Edited date set: " + StaticLib.getDateAsString(editedBirthDate));
-                }
-            }
-        });
+        //dateButton = (Button)getView().findViewById(R.id.open_date_picker);
+        datePicker = (DatePicker)getView().findViewById(R.id.date_picker);
 
 
     }
 
 
-    public Person getPersonDetails(){
+    public Person getUpdatedPerson(){
         Person p = new Person();
 
-        p.setFirstName(firstNameEdit.toString());
-        p.setLastName(lastNameEdit.toString());
-        p.setPhoneNr(phoneNumberEdit.toString());
+        p.setFirstName(firstNameEdit.getText().toString());
+        p.setLastName(lastNameEdit.getText().toString());
+        p.setPhoneNr(phoneNumberEdit.getText().toString());
+
+        if(displayedBirthDate == null)
+            displayedBirthDate = new GregorianCalendar();
+        displayedBirthDate.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
         p.setBirthDate(displayedBirthDate);
+
         return p;
     }
 
@@ -100,10 +80,17 @@ public class PersonRegistrationFragment extends Fragment{
     public void setPersonInView(Person p){
         Log.d("Birthday", "PersonFragment " + p.getFirstName() + " " + p.getLastName());
         if(p != null){
+
             firstNameEdit.setText(p.getFirstName());
             lastNameEdit.setText(p.getLastName());
             phoneNumberEdit.setText(p.getPhoneNr());
             displayedBirthDate = p.getBirthDate();
+
+            int year = displayedBirthDate.get(Calendar.YEAR);
+            int month = displayedBirthDate.get(Calendar.MONTH);
+            int day = displayedBirthDate.get(Calendar.DAY_OF_MONTH);
+            datePicker.updateDate(year, month, day);
+
         }
     }
 

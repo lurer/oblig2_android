@@ -9,10 +9,19 @@ import java.util.Date;
  */
 public class Person implements Serializable{
 
+    private int personId;
     private String firstName;
     private String lastName;
     private String phoneNr;
     private Calendar birthDate;
+
+    public Person(int id, String firstName, String lastName, String phoneNr, Calendar birthDate) {
+        personId = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNr = phoneNr;
+        this.birthDate = birthDate;
+    }
 
     public Person(String firstName, String lastName, String phoneNr, Calendar birthDate) {
         this.firstName = firstName;
@@ -23,6 +32,14 @@ public class Person implements Serializable{
 
     public Person(){}
 
+
+    public int getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(int personId) {
+        this.personId = personId;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -54,5 +71,17 @@ public class Person implements Serializable{
 
     public void setBirthDate(Calendar birthDate) {
         this.birthDate = birthDate;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "personId=" + personId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNr='" + phoneNr + '\'' +
+                ", birthDate=" + birthDate +
+                '}';
     }
 }

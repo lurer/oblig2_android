@@ -1,11 +1,11 @@
 package com.example.s198599.s198599_mappe2.fragments;
 
+import com.example.s198599.s198599_mappe2.lib.ListFragmentCallback;
 import com.example.s198599.s198599_mappe2.models.PersonAdapter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.app.ListFragment;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,20 +15,22 @@ import android.widget.ListView;
 import com.example.s198599.s198599_mappe2.R;
 import com.example.s198599.s198599_mappe2.models.Person;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 
 public class PersonListFragment extends ListFragment
-        implements PersonAdapter.CheckboxChangedCallback, PersonAdapter.EditPersonCallback {
+        implements PersonAdapter.CheckboxChangedCallback,
+                    PersonAdapter.EditPersonCallback{
 
     private PersonAdapter adapter;
     private PersonAdapterListener listener;
     private ListView lv;
+    private List<Person> personList;
 
+
+    private Person selctedPersonFromList;
 
     public PersonListFragment() {
     }
@@ -45,6 +47,10 @@ public class PersonListFragment extends ListFragment
         void onEditPersonClicked(Person p);
     }
 
+    public interface PersonListCallback{
+
+    }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -55,8 +61,8 @@ public class PersonListFragment extends ListFragment
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Person p = adapter.getItem(position);
-                listener.onItemclicked(p);
+                selctedPersonFromList = adapter.getItem(position);
+                listener.onItemclicked(selctedPersonFromList);
             }
         });
         adapter.setCheckboxChangedCallback(this);
@@ -75,14 +81,16 @@ public class PersonListFragment extends ListFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        List<Person> dummyList = new ArrayList<>();
+        if(personList == null) {
+            personList = new ArrayList<>();
 
-        Calendar today = Calendar.getInstance();
-        dummyList.add(new Person("Espen", "Zaal", "98653942", today));
-        dummyList.add(new Person("Truls", "Pettersen", "90123456", today));
+            Calendar today = Calendar.getInstance();
+            personList.add(new Person(0, "Espen", "Zaal", "98653942", today));
+            personList.add(new Person(1, "Truls", "Pettersen", "90123456", today));
+        }
 
         adapter = new PersonAdapter(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, dummyList);
+                android.R.layout.simple_list_item_1, android.R.id.text1, personList);
 
 
     }
@@ -111,16 +119,31 @@ public class PersonListFragment extends ListFragment
     @Override
     public void onCheckboxClicked(int position, boolean isChecked) {
 
-        Person p = adapter.getItem(position);
-        listener.onCheckBoxClicked(p, position, isChecked);
+        selctedPersonFromList = adapter.getItem(position);
+        listener.onCheckBoxClicked(selctedPersonFromList, position, isChecked);
     }
 
 
 
     @Override
     public void onEditPersonClicked(int position) {
-        Person p = adapter.getItem(position);
-        listener.onEditPersonClicked(p);
+        selctedPersonFromList = adapter.getItem(position);
+        listener.onEditPersonClicked(selctedPersonFromList);
+    }
+
+    public void addPersonToList(Person newPerson){
+        personList.add(newPerson);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void updatePersonInList(Person updatedPerson){
+        for(int i = 0; i < personList.size(); i++){
+            if(personList.get(i).getPersonId() == updatedPerson.getPersonId()){
+                personList.set(i, updatedPerson);
+                break;
+            }
+        }
+        adapter.notifyDataSetChanged();
     }
 
 }

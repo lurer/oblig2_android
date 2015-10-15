@@ -1,5 +1,6 @@
 package com.example.s198599.s198599_mappe2;
 
+import android.app.ListFragment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,12 +21,16 @@ public class MyFriends extends AppCompatActivity
 
     private List<Integer> checkedItems;
     private MenuItem deleteMenuItem;
+    private final static int NEW_PERSON_REQUEST = 1;
+    private final static int EDIT_PERSON_REQUEST = 2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_friends);
         checkedItems = new ArrayList<>();
+
     }
 
     @Override
@@ -42,19 +47,15 @@ public class MyFriends extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        Intent i;
-
         switch (item.getItemId()){
 
             case R.id.action_back:
-                i = new Intent(this, MainActivity.class);
+                Intent i = new Intent(this, MainActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 break;
             case R.id.addperson:
-                i = new Intent(this, AddPerson.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
+                onNewPersonClicked();
                 break;
             case R.id.deleteperson:
                 break;
@@ -104,6 +105,15 @@ public class MyFriends extends AppCompatActivity
     }
 
 
+    public void onNewPersonClicked(){
+        Intent i = new Intent(this, AddPerson.class);
+        Person p = new Person();
+        i.putExtra("person", p);
+        startActivityForResult(i, NEW_PERSON_REQUEST);
+
+    }
+
+
     @Override
     public void onEditPersonClicked(Person p) {
         Log.d("Birthday", "Editing " + p.getFirstName() + " " + p.getLastName());
@@ -113,11 +123,25 @@ public class MyFriends extends AppCompatActivity
 
         i.putExtra("person", p);
         Log.d("Birthday", "Lagt til person i Intent");
-        startActivity(i);
+        startActivityForResult(i, EDIT_PERSON_REQUEST);
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        PersonListFragment list = (PersonListFragment)getFragmentManager().findFragmentById(R.id.person_list_view_activity);
 
-
+        if(requestCode == EDIT_PERSON_REQUEST){
+            Log.d("Birthday", "Edit Person Finished");
+            Person p = (Person)data.getSerializableExtra("updatedPerson");
+            //Log.d("Birthday", "Edited person: " + p.toString());
+            list.updatePersonInList(p);
+        }else{
+            Log.d("Birthday", "New Person Finished");
+            Person p = (Person)data.getSerializableExtra("newPerson");
+            Log.d("Birthday", "Edited person: " + p.toString());
+            list.addPersonToList(p);
+        }
+    }
 }
