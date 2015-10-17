@@ -146,4 +146,18 @@ public class PersonListFragment extends ListFragment
         adapter.notifyDataSetChanged();
     }
 
+
+
+    public void deleteSelectedRow(int position){
+
+        try {
+            personList.remove(position);
+        }catch(Exception e){
+            if(personList.size() == 1){
+                personList.clear();
+            }
+        }
+        adapter.notifyDataSetChanged();
+    }
+
 }

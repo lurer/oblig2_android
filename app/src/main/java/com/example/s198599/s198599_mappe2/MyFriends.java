@@ -58,6 +58,7 @@ public class MyFriends extends AppCompatActivity
                 onNewPersonClicked();
                 break;
             case R.id.deleteperson:
+                onDeleteClicked();
                 break;
             case R.id.action_settings:
 
@@ -75,6 +76,17 @@ public class MyFriends extends AppCompatActivity
 
         //onEditPersonClicked(p);
     }
+
+
+    public void onDeleteClicked(){
+        PersonListFragment list = (PersonListFragment)getFragmentManager().findFragmentById(R.id.person_list_view_activity);
+        for(int i = 0; i < checkedItems.size(); i++){
+            list.deleteSelectedRow(checkedItems.get(i));
+        }
+    }
+
+
+
 
     @Override
     public void onCheckBoxClicked(Person p, int position, boolean isChecked) {
