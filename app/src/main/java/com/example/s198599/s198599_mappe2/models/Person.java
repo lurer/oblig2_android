@@ -1,19 +1,32 @@
 package com.example.s198599.s198599_mappe2.models;
 
 import java.io.Serializable;
+import java.lang.reflect.Type;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+
+import za.co.neilson.sqlite.orm.DatabaseDriverInterface;
+import za.co.neilson.sqlite.orm.DatabaseInfo;
+import za.co.neilson.sqlite.orm.DatabaseModel;
+import za.co.neilson.sqlite.orm.ObjectModel;
+import za.co.neilson.sqlite.orm.annotations.PrimaryKey;
 
 /**
  * Created by espen on 10/5/15.
  */
 public class Person implements Serializable{
 
+    @PrimaryKey(autoIncrement = true)
     private int personId;
     private String firstName;
     private String lastName;
     private String phoneNr;
     private Calendar birthDate;
+
+
 
     public Person(int id, String firstName, String lastName, String phoneNr, Calendar birthDate) {
         personId = id;
@@ -84,4 +97,6 @@ public class Person implements Serializable{
                 ", birthDate=" + birthDate +
                 '}';
     }
+
+
 }

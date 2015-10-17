@@ -3,11 +3,14 @@ package com.example.s198599.s198599_mappe2.models;
 import java.sql.Timestamp;
 import java.util.Calendar;
 
+import za.co.neilson.sqlite.orm.annotations.PrimaryKey;
+
 /**
  * Created by espen on 10/5/15.
  */
 public class Sms {
 
+    @PrimaryKey
     private int messageId;
     private String message;
     private Calendar dateTime;

@@ -1,6 +1,6 @@
 ::: Validering av input ::::
 
-::: Slette personer via checkboxes :::
+::: Bug i sletterutine. Kan ikke slette flere personer etter hverandre :::
 
 
 

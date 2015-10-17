@@ -68,7 +68,7 @@ public class EditPerson extends AppCompatActivity {
 
     public void getUpdatedPerson(){
         updatingPerson = regForm.getUpdatedPerson();
-        //Log.d("Birthday", "Edited person: " + updatingPerson.toString());
+
         Intent i = new Intent(this, MyFriends.class);
         i.putExtra("updatedPerson", updatingPerson);
         setResult(RESULT_OK, i);

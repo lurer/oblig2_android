@@ -141,4 +141,7 @@ public class PersonAdapter extends ArrayAdapter<Person> {
         CheckBox checkBox;
         ImageView details;
     }
+
+
+
 }

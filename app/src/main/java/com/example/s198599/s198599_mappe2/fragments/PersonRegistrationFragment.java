@@ -24,7 +24,7 @@ import java.util.GregorianCalendar;
 public class PersonRegistrationFragment extends Fragment{
 
 
-
+    private int personID;
     private EditText firstNameEdit;
     private EditText lastNameEdit;
     private EditText phoneNumberEdit;
@@ -64,6 +64,7 @@ public class PersonRegistrationFragment extends Fragment{
     public Person getUpdatedPerson(){
         Person p = new Person();
 
+        p.setPersonId(personID);
         p.setFirstName(firstNameEdit.getText().toString());
         p.setLastName(lastNameEdit.getText().toString());
         p.setPhoneNr(phoneNumberEdit.getText().toString());
@@ -80,7 +81,7 @@ public class PersonRegistrationFragment extends Fragment{
     public void setPersonInView(Person p){
         Log.d("Birthday", "PersonFragment " + p.getFirstName() + " " + p.getLastName());
         if(p != null){
-
+            personID = p.getPersonId();
             firstNameEdit.setText(p.getFirstName());
             lastNameEdit.setText(p.getLastName());
             phoneNumberEdit.setText(p.getPhoneNr());

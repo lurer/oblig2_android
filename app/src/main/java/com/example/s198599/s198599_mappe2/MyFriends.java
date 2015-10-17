@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.s198599.s198599_mappe2.db_orm.Dao;
+import com.example.s198599.s198599_mappe2.db_orm.DataModel;
 import com.example.s198599.s198599_mappe2.fragments.PersonListFragment;
 import com.example.s198599.s198599_mappe2.models.Person;
 import com.example.s198599.s198599_mappe2.registration_activities.AddPerson;
@@ -80,9 +82,38 @@ public class MyFriends extends AppCompatActivity
 
     public void onDeleteClicked(){
         PersonListFragment list = (PersonListFragment)getFragmentManager().findFragmentById(R.id.person_list_view_activity);
-        for(int i = 0; i < checkedItems.size(); i++){
-            list.deleteSelectedRow(checkedItems.get(i));
+
+
+        DataModel db = null;
+        try {
+
+            db = Dao.getDataModel(getBaseContext());
+            Log.d("Birthday", "Skal i gang med sletting..");
+            List<Person> toBeDeleted = new ArrayList<>();
+            for(int i = 0; i < checkedItems.size(); i++){
+
+                int index = checkedItems.get(i);
+                Person p = db.getObjectModel(Person.class).getFirst("personId=?",  index);
+                toBeDeleted.add(p);
+                Log.d("Birthday", "Sletter: " + p.toString());
+                //db.getObjectModel(Person.class).delete(p);
+            }
+            db.getObjectModel(Person.class).deleteAll(toBeDeleted);
+
+
+            list.notifyAdapterOnChange();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(db != null){
+                db.disconnect();
+                db = null;
+            }
         }
+
+
+
+
     }
 
 
@@ -99,12 +130,12 @@ public class MyFriends extends AppCompatActivity
 
 
         if(isChecked){
-            checkedItems.add(position);
+            checkedItems.add(p.getPersonId());
             if(!deleteMenuItem.isVisible())
                 deleteMenuItem.setVisible(true);
         }else{
             try {
-                checkedItems.remove(position);
+                checkedItems.remove(p.getPersonId());
             }catch (Exception e){
                 checkedItems.clear();
             }
@@ -147,13 +178,47 @@ public class MyFriends extends AppCompatActivity
         if(requestCode == EDIT_PERSON_REQUEST){
             Log.d("Birthday", "Edit Person Finished");
             Person p = (Person)data.getSerializableExtra("updatedPerson");
-            //Log.d("Birthday", "Edited person: " + p.toString());
-            list.updatePersonInList(p);
+
+            DataModel db = null;
+            try {
+
+                db = Dao.getDataModel(getBaseContext());
+                db.getObjectModel(Person.class).update(p);
+
+                list.notifyAdapterOnChange();
+            }catch (Exception e){
+                e.printStackTrace();
+            }finally {
+                if(db != null){
+                    db.disconnect();
+                    db = null;
+                }
+            }
+
+            //list.updatePersonInList(p);
         }else{
             Log.d("Birthday", "New Person Finished");
             Person p = (Person)data.getSerializableExtra("newPerson");
             Log.d("Birthday", "Edited person: " + p.toString());
-            list.addPersonToList(p);
+
+
+            DataModel db = null;
+            try {
+
+                db = Dao.getDataModel(getBaseContext());
+                db.getObjectModel(Person.class).insert(p);
+
+                list.notifyAdapterOnChange();
+            }catch (Exception e){
+                e.printStackTrace();
+            }finally {
+                if(db != null){
+                    db.disconnect();
+                    db = null;
+                }
+            }
+
+
         }
     }
 }

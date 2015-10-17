@@ -1,11 +1,14 @@
 package com.example.s198599.s198599_mappe2.fragments;
 
+import com.example.s198599.s198599_mappe2.db_orm.Dao;
+import com.example.s198599.s198599_mappe2.db_orm.DataModel;
 import com.example.s198599.s198599_mappe2.lib.ListFragmentCallback;
 import com.example.s198599.s198599_mappe2.models.PersonAdapter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.app.ListFragment;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +18,8 @@ import android.widget.ListView;
 import com.example.s198599.s198599_mappe2.R;
 import com.example.s198599.s198599_mappe2.models.Person;
 
+import java.sql.SQLDataException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -47,10 +52,6 @@ public class PersonListFragment extends ListFragment
         void onEditPersonClicked(Person p);
     }
 
-    public interface PersonListCallback{
-
-    }
-
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -81,13 +82,7 @@ public class PersonListFragment extends ListFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(personList == null) {
-            personList = new ArrayList<>();
-
-            Calendar today = Calendar.getInstance();
-            personList.add(new Person(0, "Espen", "Zaal", "98653942", today));
-            personList.add(new Person(1, "Truls", "Pettersen", "90123456", today));
-        }
+        getListFromDatabase();
 
         adapter = new PersonAdapter(getActivity(),
                 android.R.layout.simple_list_item_1, android.R.id.text1, personList);
@@ -133,7 +128,9 @@ public class PersonListFragment extends ListFragment
 
     public void addPersonToList(Person newPerson){
         personList.add(newPerson);
-        adapter.notifyDataSetChanged();
+        //adapter.notifyDataSetChanged();
+        Log.d("Birthday", "AddPerson - notify adapter to update");
+
     }
 
     public void updatePersonInList(Person updatedPerson){
@@ -159,5 +156,40 @@ public class PersonListFragment extends ListFragment
         }
         adapter.notifyDataSetChanged();
     }
+
+    public void notifyAdapterOnChange(){
+
+        getListFromDatabase();
+
+        adapter.notifyDataSetChanged();
+    }
+
+
+    public void getListFromDatabase(){
+        DataModel db = null;
+        try {
+
+            db = Dao.getDataModel(getActivity());
+
+            if(personList != null){
+                Log.d("Birthday", "Getting updated database");
+                personList.clear();
+                personList.addAll(db.getObjectModel(Person.class).getAll());
+
+            }else{
+                personList = db.getObjectModel(Person.class).getAll();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(db != null){
+                db.disconnect();
+                db = null;
+            }
+        }
+
+    }
+
+
 
 }
