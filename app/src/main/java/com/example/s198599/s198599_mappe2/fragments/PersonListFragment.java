@@ -2,6 +2,7 @@ package com.example.s198599.s198599_mappe2.fragments;
 
 import com.example.s198599.s198599_mappe2.db_orm.Dao;
 import com.example.s198599.s198599_mappe2.db_orm.DataModel;
+import com.example.s198599.s198599_mappe2.db_orm.PersonDAO;
 import com.example.s198599.s198599_mappe2.lib.ListFragmentCallback;
 import com.example.s198599.s198599_mappe2.models.PersonAdapter;
 import android.app.Activity;
@@ -126,66 +127,25 @@ public class PersonListFragment extends ListFragment
         listener.onEditPersonClicked(selctedPersonFromList);
     }
 
-    public void addPersonToList(Person newPerson){
-        personList.add(newPerson);
-        //adapter.notifyDataSetChanged();
-        Log.d("Birthday", "AddPerson - notify adapter to update");
-
-    }
-
-    public void updatePersonInList(Person updatedPerson){
-        for(int i = 0; i < personList.size(); i++){
-            if(personList.get(i).getPersonId() == updatedPerson.getPersonId()){
-                personList.set(i, updatedPerson);
-                break;
-            }
-        }
-        adapter.notifyDataSetChanged();
-    }
 
 
-
-    public void deleteSelectedRow(int position){
-
-        try {
-            personList.remove(position);
-        }catch(Exception e){
-            if(personList.size() == 1){
-                personList.clear();
-            }
-        }
-        adapter.notifyDataSetChanged();
-    }
 
     public void notifyAdapterOnChange(){
 
         getListFromDatabase();
-
         adapter.notifyDataSetChanged();
     }
 
 
     public void getListFromDatabase(){
-        DataModel db = null;
-        try {
 
-            db = Dao.getDataModel(getActivity());
+        if(personList != null){
+            Log.d("Birthday", "Getting updated database");
+            personList.clear();
+            personList.addAll(PersonDAO.getListFromDatabase(getActivity()));
 
-            if(personList != null){
-                Log.d("Birthday", "Getting updated database");
-                personList.clear();
-                personList.addAll(db.getObjectModel(Person.class).getAll());
-
-            }else{
-                personList = db.getObjectModel(Person.class).getAll();
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            if(db != null){
-                db.disconnect();
-                db = null;
-            }
+        }else{
+            personList = PersonDAO.getListFromDatabase(getActivity());
         }
 
     }

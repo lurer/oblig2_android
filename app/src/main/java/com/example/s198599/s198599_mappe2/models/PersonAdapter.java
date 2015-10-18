@@ -143,5 +143,9 @@ public class PersonAdapter extends ArrayAdapter<Person> {
     }
 
 
-
+    public void updatePersonList(List<Person> newList){
+        mList.clear();
+        mList.addAll(newList);
+        //this.notifyDataSetChanged();
+    }
 }

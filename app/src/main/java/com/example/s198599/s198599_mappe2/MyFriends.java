@@ -1,6 +1,5 @@
 package com.example.s198599.s198599_mappe2;
 
-import android.app.ListFragment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,8 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.s198599.s198599_mappe2.db_orm.Dao;
-import com.example.s198599.s198599_mappe2.db_orm.DataModel;
+import com.example.s198599.s198599_mappe2.db_orm.PersonDAO;
 import com.example.s198599.s198599_mappe2.fragments.PersonListFragment;
 import com.example.s198599.s198599_mappe2.models.Person;
 import com.example.s198599.s198599_mappe2.registration_activities.AddPerson;
@@ -21,7 +19,7 @@ import java.util.List;
 public class MyFriends extends AppCompatActivity
         implements PersonListFragment.PersonAdapterListener{
 
-    private List<Integer> checkedItems;
+    private List<Integer> personIdsSelected;
     private MenuItem deleteMenuItem;
     private final static int NEW_PERSON_REQUEST = 1;
     private final static int EDIT_PERSON_REQUEST = 2;
@@ -31,7 +29,7 @@ public class MyFriends extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_friends);
-        checkedItems = new ArrayList<>();
+        personIdsSelected = new ArrayList<>();
 
     }
 
@@ -80,41 +78,7 @@ public class MyFriends extends AppCompatActivity
     }
 
 
-    public void onDeleteClicked(){
-        PersonListFragment list = (PersonListFragment)getFragmentManager().findFragmentById(R.id.person_list_view_activity);
 
-
-        DataModel db = null;
-        try {
-
-            db = Dao.getDataModel(getBaseContext());
-            Log.d("Birthday", "Skal i gang med sletting..");
-            List<Person> toBeDeleted = new ArrayList<>();
-            for(int i = 0; i < checkedItems.size(); i++){
-
-                int index = checkedItems.get(i);
-                Person p = db.getObjectModel(Person.class).getFirst("personId=?",  index);
-                toBeDeleted.add(p);
-                Log.d("Birthday", "Sletter: " + p.toString());
-                //db.getObjectModel(Person.class).delete(p);
-            }
-            db.getObjectModel(Person.class).deleteAll(toBeDeleted);
-
-
-            list.notifyAdapterOnChange();
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            if(db != null){
-                db.disconnect();
-                db = null;
-            }
-        }
-
-
-
-
-    }
 
 
 
@@ -125,25 +89,25 @@ public class MyFriends extends AppCompatActivity
                 p.getFirstName() + " " +
                 p.getLastName() + " is " + isChecked);
 
-        if(checkedItems == null)
-            checkedItems = new ArrayList<>();
+        if(personIdsSelected == null)
+            personIdsSelected = new ArrayList<>();
 
 
         if(isChecked){
-            checkedItems.add(p.getPersonId());
+            personIdsSelected.add(p.getPersonId());
             if(!deleteMenuItem.isVisible())
                 deleteMenuItem.setVisible(true);
         }else{
             try {
-                checkedItems.remove(p.getPersonId());
+                personIdsSelected.remove(p.getPersonId());
             }catch (Exception e){
-                checkedItems.clear();
+                personIdsSelected.clear();
             }
-            if(checkedItems.size() == 0){
+            if(personIdsSelected.size() == 0){
                 deleteMenuItem.setVisible(false);
             }
         }
-        Log.d("Birthday", "Checked items " + checkedItems.size());
+        Log.d("Birthday", "Checked items " + personIdsSelected.size());
 
     }
 
@@ -170,6 +134,9 @@ public class MyFriends extends AppCompatActivity
 
     }
 
+
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -179,46 +146,26 @@ public class MyFriends extends AppCompatActivity
             Log.d("Birthday", "Edit Person Finished");
             Person p = (Person)data.getSerializableExtra("updatedPerson");
 
-            DataModel db = null;
-            try {
+            PersonDAO.updatePerson(getBaseContext(), p);
+            list.notifyAdapterOnChange();
 
-                db = Dao.getDataModel(getBaseContext());
-                db.getObjectModel(Person.class).update(p);
 
-                list.notifyAdapterOnChange();
-            }catch (Exception e){
-                e.printStackTrace();
-            }finally {
-                if(db != null){
-                    db.disconnect();
-                    db = null;
-                }
-            }
-
-            //list.updatePersonInList(p);
         }else{
             Log.d("Birthday", "New Person Finished");
             Person p = (Person)data.getSerializableExtra("newPerson");
             Log.d("Birthday", "Edited person: " + p.toString());
 
-
-            DataModel db = null;
-            try {
-
-                db = Dao.getDataModel(getBaseContext());
-                db.getObjectModel(Person.class).insert(p);
-
-                list.notifyAdapterOnChange();
-            }catch (Exception e){
-                e.printStackTrace();
-            }finally {
-                if(db != null){
-                    db.disconnect();
-                    db = null;
-                }
-            }
-
+            PersonDAO.addPerson(getBaseContext(), p);
+            list.notifyAdapterOnChange();
 
         }
+    }
+
+
+    public void onDeleteClicked(){
+        PersonListFragment list = (PersonListFragment)getFragmentManager().findFragmentById(R.id.person_list_view_activity);
+
+        PersonDAO.deletePersons(getBaseContext(), personIdsSelected);
+        list.notifyAdapterOnChange();
     }
 }

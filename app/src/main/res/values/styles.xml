@@ -20,7 +20,9 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@drawable/draw_activity_background</item>
+
     </style>
+
 
     <style name="big_button_style">
         <item name="android:layout_centerHorizontal">true</item>

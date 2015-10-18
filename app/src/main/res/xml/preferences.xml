@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/pref_sms_category_title">
+        <EditTextPreference
+            android:key="sms_text"
+            android:title="@string/pref_sms_title"
+            android:summary="@string/pref_sms_summary"
+            android:defaultValue="@string/pref_sms_title" />
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:title="@string/pref_service_category_title">
+
+        <Preference
+            android:key="prefTimePicker"
+            android:title="@string/pref_serivce_run_time"
+            android:summary="@string/pref_service_run_time_summary"/>
+
+        <Preference
+            android:key="prefStartService"
+            android:title="@string/pref_service_start"
+            android:summary="@string/pref_service_start_summary"/>
+
+        <Preference
+            android:key="prefStopService"
+            android:title="@string/pref_service_stop"
+            android:summary="@string/pref_service_stop_summary"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

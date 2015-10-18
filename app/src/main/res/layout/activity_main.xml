@@ -22,12 +22,4 @@
         android:onClick="goToFriendsList"
         />
 
-    <Button
-        android:id="@+id/upcomming_birthdays"
-        style="@style/big_button_style"
-        android:layout_marginTop="15dp"
-        android:text="@string/btn_upcoming_birthdays"
-        android:layout_below="@id/my_friends"
-        android:onClick="showUpcoming"
-        />
 </RelativeLayout>

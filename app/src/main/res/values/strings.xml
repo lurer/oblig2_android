@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">My birthday organizer</string>
-    <string name="action_settings">Settings</string>
+
 
     <string name="app_heading">My birthday organizer</string>
     <string name="btn_my_friends_list">My Friends</string>
@@ -43,6 +43,19 @@
     <string name="action_back">Back</string>
 
 
+    <!-- Preference stuff-->
+    <string name="action_settings">Settings</string>
+    <string name="pref_sms_category_title">SMS settings</string>
+    <string name="pref_sms_title">Greeting</string>
+    <string name="pref_sms_summary">Birthday greeting message</string>
 
+    <string name="pref_service_category_title">Service settings</string>
+    <string name="pref_serivce_run_time">Time</string>
+    <string name="pref_service_run_time_summary">Scheduled start time for SMS service</string>
+
+    <string name="pref_service_start">Start</string>
+    <string name="pref_service_start_summary">Start SMS scheduling service</string>
+    <string name="pref_service_stop">Stop</string>
+    <string name="pref_service_stop_summary">Stop SMS scheduling service</string>
 
 </resources>

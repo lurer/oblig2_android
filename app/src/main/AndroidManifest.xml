@@ -52,6 +52,11 @@
             android:label="@string/title_activity_my_friends" >
         </activity>
         <activity
+            android:parentActivityName=".PreferenceActivity"
+            android:name=".PreferenceActivity"
+            android:label="@string/action_settings" >
+        </activity>
+        <activity
             android:parentActivityName=".MyFriends"
             android:name=".registration_activities.AddPerson"
             android:label="@string/title_activity_add_person" >

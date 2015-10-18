@@ -64,7 +64,7 @@ public class DataModel extends DatabaseModel<Cursor, ContentValues> {
 
     @Override
     public int getDatabaseVersion() {
-        return 18;
+        return 19;
     }
 
     @Override
