@@ -1,8 +1,13 @@
 ::: Validering av input ::::
+::: Content provider :::
 
-::: Bug i sletterutine. Kan ikke slette flere personer etter hverandre :::
 ::: Fixe litt på gui :::
 
+
+
+Bugs
+- Bug i sletterutine. Kan ikke slette flere personer etter hverandre
+- BirthdayNotificationService kjører i det telefonen starter BirthdayService
 
 
 BirthdayService
@@ -13,8 +18,6 @@ BirthdayService
         - Gi notifikasjon når det sendes en melding.
 
 
-SQL/ORM
-    - Opprette database og implementere ORM og CRUD
 
 
 

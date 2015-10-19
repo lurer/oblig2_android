@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/activity_style"
-    tools:context="com.example.s198599.s198599_mappe2.registration_activities.EditPerson">
+    tools:context="com.example.s198599.s198599_mappe2.EditPerson">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -23,6 +23,7 @@
             android:name="com.example.s198599.s198599_mappe2.fragments.PersonRegistrationFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:id="@+id/person_fragment"
             android:layout_below="@+id/txt_info"/>
 

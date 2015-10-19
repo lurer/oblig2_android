@@ -11,12 +11,9 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.s198599.s198599_mappe2.ApplicationState;
 import com.example.s198599.s198599_mappe2.R;
 import com.example.s198599.s198599_mappe2.lib.StaticLib;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**

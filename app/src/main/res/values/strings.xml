@@ -58,4 +58,9 @@
     <string name="pref_service_stop">Stop</string>
     <string name="pref_service_stop_summary">Stop SMS scheduling service</string>
 
+
+
+
+    <string name="notification_title">Birthday greeting!</string>
+    <string name="notification_text">Wishing your friend Happy Birthday</string>
 </resources>

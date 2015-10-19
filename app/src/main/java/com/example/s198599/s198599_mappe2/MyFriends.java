@@ -10,8 +10,6 @@ import android.view.MenuItem;
 import com.example.s198599.s198599_mappe2.db_orm.PersonDAO;
 import com.example.s198599.s198599_mappe2.fragments.PersonListFragment;
 import com.example.s198599.s198599_mappe2.models.Person;
-import com.example.s198599.s198599_mappe2.registration_activities.AddPerson;
-import com.example.s198599.s198599_mappe2.registration_activities.EditPerson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,10 +45,11 @@ public class MyFriends extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        Intent i;
         switch (item.getItemId()){
 
             case R.id.action_back:
-                Intent i = new Intent(this, MainActivity.class);
+                i = new Intent(this, MainActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 break;
@@ -61,7 +60,9 @@ public class MyFriends extends AppCompatActivity
                 onDeleteClicked();
                 break;
             case R.id.action_settings:
-
+                i = new Intent(this, PreferenceActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
                 break;
         }
 
@@ -76,11 +77,6 @@ public class MyFriends extends AppCompatActivity
 
         //onEditPersonClicked(p);
     }
-
-
-
-
-
 
 
     @Override
@@ -144,19 +140,30 @@ public class MyFriends extends AppCompatActivity
 
         if(requestCode == EDIT_PERSON_REQUEST){
             Log.d("Birthday", "Edit Person Finished");
-            Person p = (Person)data.getSerializableExtra("updatedPerson");
-
-            PersonDAO.updatePerson(getBaseContext(), p);
-            list.notifyAdapterOnChange();
-
+            try {
+                Person p = (Person) data.getSerializableExtra("updatedPerson");
+                if (p != null) {
+                    PersonDAO.updatePerson(getBaseContext(), p);
+                    list.notifyAdapterOnChange();
+                }
+            }catch (NullPointerException e){
+                Log.d("Birthday", "Person update was not completed successfully");
+            }
 
         }else{
             Log.d("Birthday", "New Person Finished");
-            Person p = (Person)data.getSerializableExtra("newPerson");
-            Log.d("Birthday", "Edited person: " + p.toString());
+            try{
+                Person p = (Person)data.getSerializableExtra("newPerson");
+                if(p != null){
+                    Log.d("Birthday", "Edited person: " + p.toString());
 
-            PersonDAO.addPerson(getBaseContext(), p);
-            list.notifyAdapterOnChange();
+                    PersonDAO.addPerson(getBaseContext(), p);
+                    list.notifyAdapterOnChange();
+                }
+            }catch (NullPointerException e){
+                Log.d("Birthday", "Person registration was not completed successfully");
+            }
+
 
         }
     }

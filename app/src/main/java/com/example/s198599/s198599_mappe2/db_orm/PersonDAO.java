@@ -3,15 +3,57 @@ package com.example.s198599.s198599_mappe2.db_orm;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.s198599.s198599_mappe2.lib.StaticLib;
 import com.example.s198599.s198599_mappe2.models.Person;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
  * Created by espen on 10/18/15.
  */
 public class PersonDAO {
+
+    public static List<Person> getBirthdaysToday(Context context){
+
+        DataModel db = null;
+        List<Person> list = null;
+        try {
+
+            db = Dao.getDataModel(context);
+            Calendar today = Calendar.getInstance();
+
+            //list = db.getObjectModel(Person.class).getAll("birthDate=?", today);
+            list = db.getObjectModel(Person.class).getAll();
+            Log.d("Birthday", "Birthdaylist size: " + list.size());
+            Log.d("Birthday", "PersonDAO - getting list of birthday people. Todays date: " + StaticLib.getDateAsString(today));
+            for(Person p : list){
+
+                if(!p.getBirthDate().equals(today)){
+                    list.remove(p);
+
+                }
+            }
+            //Log.d("Birthday", "PersonDAO - getting list of birthday people. Todays date: " + StaticLib.getDateAsString(today));
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(db != null){
+                db.disconnect();
+                db = null;
+            }
+        }
+
+        if(list == null) {
+            Log.d("Birthday", "Birthday list is NULL");
+            list = new ArrayList<>();
+        }
+        return list;
+    }
+
+
 
     public static List<Person> getListFromDatabase(Context context){
 

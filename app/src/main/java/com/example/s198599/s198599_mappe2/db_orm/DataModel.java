@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.util.Log;
 
 import com.example.s198599.s198599_mappe2.models.Person;
-import com.example.s198599.s198599_mappe2.models.Sms;
 
 import java.lang.reflect.Type;
 import java.sql.SQLException;
@@ -52,9 +51,7 @@ public class DataModel extends DatabaseModel<Cursor, ContentValues> {
 
         });
 
-        objectModels.put(Sms.class, new AndroidObjectModel<Sms>(this) {
 
-        });
     }
 
     @Override

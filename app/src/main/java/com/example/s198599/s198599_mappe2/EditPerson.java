@@ -1,4 +1,4 @@
-package com.example.s198599.s198599_mappe2.registration_activities;
+package com.example.s198599.s198599_mappe2;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.s198599.s198599_mappe2.MyFriends;
+import com.example.s198599.s198599_mappe2.PreferenceActivity;
 import com.example.s198599.s198599_mappe2.R;
 import com.example.s198599.s198599_mappe2.fragments.PersonRegistrationFragment;
 import com.example.s198599.s198599_mappe2.models.Person;
@@ -49,9 +50,10 @@ public class EditPerson extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        Intent i;
         switch (item.getItemId()){
             case R.id.action_back:
-                Intent i = new Intent(this, MyFriends.class);
+                i = new Intent(this, MyFriends.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 break;
@@ -59,6 +61,9 @@ public class EditPerson extends AppCompatActivity {
                 getUpdatedPerson();
                 break;
             case R.id.action_settings:
+                i = new Intent(this, PreferenceActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
                 break;
         }
 
