@@ -48,9 +48,7 @@ public class MyFriends extends AppCompatActivity
         switch (item.getItemId()){
 
             case R.id.action_back:
-                i = new Intent(this, MainActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
+                finishAffinity();
                 break;
             case R.id.addperson:
                 onNewPersonClicked();
@@ -67,6 +65,7 @@ public class MyFriends extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
+
 
 
 

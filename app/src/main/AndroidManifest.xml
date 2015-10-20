@@ -13,17 +13,6 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
 
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-
         <receiver
             android:name=".BirthdayReceiver"
             android:enabled="true"
@@ -47,9 +36,14 @@
 
 
         <activity
-            android:parentActivityName=".MainActivity"
             android:name=".MyFriends"
             android:label="@string/title_activity_my_friends" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
         </activity>
         <activity
             android:parentActivityName=".PreferenceActivity"

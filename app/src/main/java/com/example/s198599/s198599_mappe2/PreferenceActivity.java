@@ -24,14 +24,11 @@ public class PreferenceActivity extends Activity {
 
 
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_preference);
-
 
         getFragmentManager().beginTransaction().
                 replace(android.R.id.content, new PrefFragment()).
@@ -54,7 +51,7 @@ public class PreferenceActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_back:
-                Intent i = new Intent(this, MainActivity.class);
+                Intent i = new Intent(this, MyFriends.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
                 break;
