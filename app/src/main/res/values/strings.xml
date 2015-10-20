@@ -63,4 +63,9 @@
 
     <string name="notification_title">Birthday greeting!</string>
     <string name="notification_text">Wishing your friend Happy Birthday</string>
+
+
+    <string name="validation_error_firstname">Please enter a valid first name</string>
+    <string name="validation_error_lastname">Please enter a valid last name</string>
+    <string name="validation_error_phone">Please enter a valid phone number, 8 digits</string>
 </resources>

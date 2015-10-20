@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/activity_style"
-    tools:context="com.example.s198599.s198599_mappe2.fragments.PersonRegistrationFragment">
+    tools:context="com.example.s198599.s198599_mappe2.PersonRegistrationFragment">
 
     <GridLayout
         android:layout_height="wrap_content"
@@ -81,6 +81,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/text_color_alt"
                 android:textSize="10dp"
+
                 />
         </RelativeLayout>
         <DatePicker

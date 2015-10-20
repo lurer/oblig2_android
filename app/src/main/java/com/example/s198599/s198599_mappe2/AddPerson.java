@@ -7,10 +7,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.s198599.s198599_mappe2.MyFriends;
-import com.example.s198599.s198599_mappe2.PreferenceActivity;
-import com.example.s198599.s198599_mappe2.R;
-import com.example.s198599.s198599_mappe2.fragments.PersonRegistrationFragment;
 import com.example.s198599.s198599_mappe2.models.Person;
 
 public class AddPerson extends AppCompatActivity {

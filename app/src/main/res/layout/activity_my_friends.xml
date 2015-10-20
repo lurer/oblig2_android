@@ -7,7 +7,7 @@
 
 
     <fragment
-        android:name="com.example.s198599.s198599_mappe2.fragments.PersonListFragment"
+        android:name="com.example.s198599.s198599_mappe2.PersonListFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/person_list_view_activity"

@@ -1,4 +1,4 @@
-package com.example.s198599.s198599_mappe2.fragments;
+package com.example.s198599.s198599_mappe2;
 
 import com.example.s198599.s198599_mappe2.db_orm.Dao;
 import com.example.s198599.s198599_mappe2.db_orm.DataModel;

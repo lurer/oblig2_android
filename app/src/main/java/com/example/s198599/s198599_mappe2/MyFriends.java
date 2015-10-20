@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.s198599.s198599_mappe2.db_orm.PersonDAO;
-import com.example.s198599.s198599_mappe2.fragments.PersonListFragment;
 import com.example.s198599.s198599_mappe2.models.Person;
 
 import java.util.ArrayList;

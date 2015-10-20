@@ -1,17 +1,22 @@
-package com.example.s198599.s198599_mappe2.fragments;
+package com.example.s198599.s198599_mappe2;
 
 
 import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.s198599.s198599_mappe2.R;
+import com.example.s198599.s198599_mappe2.lib.MyTextValidator;
+import com.example.s198599.s198599_mappe2.lib.StaticLib;
 import com.example.s198599.s198599_mappe2.models.Person;
 
 import java.util.Calendar;
@@ -56,6 +61,38 @@ public class PersonRegistrationFragment extends Fragment{
         phoneNumberEdit = (EditText)getView().findViewById(R.id.edit_phone_number);
         //dateButton = (Button)getView().findViewById(R.id.open_date_picker);
         datePicker = (DatePicker)getView().findViewById(R.id.date_picker);
+
+
+        firstNameEdit.addTextChangedListener(new MyTextValidator(firstNameEdit) {
+            @Override
+            public void validate(TextView textView, String text) {
+                String viewText = textView.getText().toString();
+                if(!viewText.matches(StaticLib.FIRSTNAME_VALID)){
+                    textView.setError(getText(R.string.validation_error_firstname));
+                }
+            }
+        });
+
+        lastNameEdit.addTextChangedListener(new MyTextValidator(lastNameEdit) {
+            @Override
+            public void validate(TextView textView, String text) {
+                String viewText = textView.getText().toString();
+                if(!viewText.matches(StaticLib.LASTNAME_VALID)){
+                    textView.setError(getText(R.string.validation_error_lastname));
+                }
+            }
+        });
+
+        phoneNumberEdit.addTextChangedListener(new MyTextValidator(phoneNumberEdit) {
+            @Override
+            public void validate(TextView textView, String text) {
+                String viewText = textView.getText().toString();
+                if(!viewText.matches(StaticLib.PHONE_VALID)){
+                    textView.setError(getText(R.string.validation_error_phone));
+                }
+            }
+        });
+
 
 
     }
