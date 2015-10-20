@@ -68,4 +68,8 @@
     <string name="validation_error_firstname">Please enter a valid first name</string>
     <string name="validation_error_lastname">Please enter a valid last name</string>
     <string name="validation_error_phone">Please enter a valid phone number, 8 digits</string>
+
+    <string name="alert_info">Confirm delete?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

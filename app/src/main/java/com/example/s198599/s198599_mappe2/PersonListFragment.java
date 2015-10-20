@@ -28,15 +28,16 @@ import java.util.List;
 
 public class PersonListFragment extends ListFragment
         implements PersonAdapter.CheckboxChangedCallback,
-                    PersonAdapter.EditPersonCallback{
+                    PersonAdapter.EditPersonCallback,
+                    PersonAdapter.OnLongClickCallback{
 
     private PersonAdapter adapter;
     private PersonAdapterListener listener;
     private ListView lv;
     private List<Person> personList;
 
-
     private Person selctedPersonFromList;
+
 
     public PersonListFragment() {
     }
@@ -51,6 +52,7 @@ public class PersonListFragment extends ListFragment
         void onItemclicked(Person p);
         void onCheckBoxClicked(Person p, int position, boolean isChecked);
         void onEditPersonClicked(Person p);
+        void onLongClicked(int position, Person p);
     }
 
 
@@ -67,9 +69,17 @@ public class PersonListFragment extends ListFragment
                 listener.onItemclicked(selctedPersonFromList);
             }
         });
+
+/*        lv.setOnLongClickListener(new AdapterView.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return false;
+            }
+        });*/
+
         adapter.setCheckboxChangedCallback(this);
         adapter.setEditPersonCallback(this);
-
+        adapter.setLongClickCallback(this);
     }
 
     @Nullable
@@ -90,6 +100,9 @@ public class PersonListFragment extends ListFragment
 
 
     }
+
+
+
 
 
     @Override
@@ -127,6 +140,12 @@ public class PersonListFragment extends ListFragment
         listener.onEditPersonClicked(selctedPersonFromList);
     }
 
+    @Override
+    public void onLongClick(int position) {
+        Log.d("Birthday", "Longclicked on position: " + position);
+
+        listener.onLongClicked(position, adapter.getItem(position));
+    }
 
 
 

@@ -1,5 +1,9 @@
 package com.example.s198599.s198599_mappe2.lib;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,6 +24,8 @@ public class StaticLib {
         DATE_FORMAT.setCalendar(cal);
         return DATE_FORMAT.format(cal.getTime());
     }
+
+
 
 
 

@@ -27,6 +27,7 @@ public class PersonAdapter extends ArrayAdapter<Person> {
     private List<Person> mList;
     private CheckboxChangedCallback checkboxCallback;
     private EditPersonCallback editPersonCallback;
+    private OnLongClickCallback longClickCallback;
 
 
     public PersonAdapter(Context context, int resource, List<Person> objects) {
@@ -54,6 +55,10 @@ public class PersonAdapter extends ArrayAdapter<Person> {
 
     public interface EditPersonCallback{
         void onEditPersonClicked(int position);
+    }
+
+    public interface OnLongClickCallback{
+        void onLongClick(int position);
     }
 
 
@@ -106,6 +111,14 @@ public class PersonAdapter extends ArrayAdapter<Person> {
             }
         });
 
+        view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                longClickCallback.onLongClick(position);
+                return true;
+            }
+        });
+
         return view;
     }
 
@@ -129,6 +142,9 @@ public class PersonAdapter extends ArrayAdapter<Person> {
         editPersonCallback = callback;
     }
 
+    public void setLongClickCallback(OnLongClickCallback callback){
+        longClickCallback = callback;
+    }
 
     private class ItemElements{
         TextView firstName;

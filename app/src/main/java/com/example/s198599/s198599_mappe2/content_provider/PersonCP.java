@@ -40,7 +40,6 @@ public class PersonCP extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
 
-
         Log.d("Birthday", "CP - Prøver å hente liste mer personer");
 
         List<Person> list = PersonDAO.getListFromDatabase(getContext());
@@ -53,6 +52,8 @@ public class PersonCP extends ContentProvider {
 
         return c;
     }
+
+
 
     @Override
     public String getType(Uri uri) {

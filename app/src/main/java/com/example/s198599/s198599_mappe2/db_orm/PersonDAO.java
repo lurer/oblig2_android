@@ -97,6 +97,25 @@ public class PersonDAO {
         }
     }
 
+    public static void deletePerson(Context context, Person p){
+
+
+        DataModel db = null;
+        try {
+
+            db = Dao.getDataModel(context);
+            db.getObjectModel(Person.class).delete(p);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(db != null){
+                db.disconnect();
+                db = null;
+            }
+        }
+    }
+
 
     public static void addPerson(Context context, Person p){
 

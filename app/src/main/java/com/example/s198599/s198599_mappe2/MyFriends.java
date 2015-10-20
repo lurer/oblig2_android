@@ -1,7 +1,8 @@
 package com.example.s198599.s198599_mappe2;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,8 +23,7 @@ public class MyFriends extends AppCompatActivity
     private final static int NEW_PERSON_REQUEST = 1;
     private final static int EDIT_PERSON_REQUEST = 2;
 
-    public static final String PROVIDER = "com.example.s198599.s198599_mappe2.content_provider";
-    public static final Uri CONTENT_URI = Uri.parse("content://" + PROVIDER + "/person");
+
 
 
     @Override
@@ -40,7 +40,7 @@ public class MyFriends extends AppCompatActivity
         getMenuInflater().inflate(R.menu.menu_my_friends, menu);
         deleteMenuItem = menu.findItem(R.id.deleteperson);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         return super.onCreateOptionsMenu(menu);
     }
@@ -72,12 +72,13 @@ public class MyFriends extends AppCompatActivity
 
 
 
-
+    /* Har valgt å ikke bruke vanlig onClick. All informasjon ligger i listevisning.
+       Sletting og endring bruker egne click-events innad i hver item.
+    */
     @Override
     public void onItemclicked(Person p) {
         Log.d("Birthday", "Item clicked in ListView");
 
-        //onEditPersonClicked(p);
     }
 
 
@@ -172,9 +173,44 @@ public class MyFriends extends AppCompatActivity
 
 
     public void onDeleteClicked(){
-        PersonListFragment list = (PersonListFragment)getFragmentManager().findFragmentById(R.id.person_list_view_activity);
+        confirmDeleteDialog(true, null);
+    }
 
-        PersonDAO.deletePersons(getBaseContext(), personIdsSelected);
-        list.notifyAdapterOnChange();
+
+    @Override
+    public void onLongClicked(int position, Person toBeDeleted) {
+        Log.d("Birthday", "Skal åpne bekreftelse på sletting");
+        confirmDeleteDialog(false, toBeDeleted);
+    }
+
+
+
+    private void confirmDeleteDialog(final boolean multiDelete, final Person toBeDeleted) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        Log.d("Birthday", "Skal åpne AlertDialog-builder");
+
+        builder.setMessage(getText(R.string.alert_info))
+                .setPositiveButton(getText(R.string.yes),  new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        Log.d("Birthday", "Er i onClick");
+                        PersonListFragment list = (PersonListFragment)getFragmentManager().
+                                findFragmentById(R.id.person_list_view_activity);
+                        if(multiDelete){
+                            PersonDAO.deletePersons(getBaseContext(), personIdsSelected);
+                        }else{
+                            Log.d("Birthday", "Pøver å kjøre slettemetode i DAO");
+                            PersonDAO.deletePerson(getBaseContext(), toBeDeleted);
+                        }
+                        list.notifyAdapterOnChange();
+                    }
+                })
+                .setNegativeButton(getText(R.string.no), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                })
+                .show();
     }
 }
