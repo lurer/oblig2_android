@@ -4,6 +4,11 @@
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
+
+    <uses-permission android:name="com.example.s198599.s198599_mappe2.content_provider.permission"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <permission android:name="com.example.s198599.s198599_mappe2.content_provider.permission"/>
+
     <uses-sdk android:minSdkVersion="11"/>
 
     <application
@@ -60,6 +65,15 @@
             android:name=".EditPerson"
             android:label="@string/title_activity_edit_person" >
         </activity>
+
+        <provider
+            android:authorities="com.example.s198599.s198599_mappe2.content_provider"
+            android:name="com.example.s198599.s198599_mappe2.content_provider.PersonCP"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.example.s198599.s198599_mappe2.content_provider.permission">
+
+        </provider>
     </application>
 
 

@@ -1,6 +1,7 @@
 package com.example.s198599.s198599_mappe2.db_orm;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.util.Log;
 
 import com.example.s198599.s198599_mappe2.lib.StaticLib;

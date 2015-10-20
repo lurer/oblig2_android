@@ -10,14 +10,3 @@ Bugs
 - BirthdayNotificationService kjører i det telefonen starter BirthdayService
 
 
-BirthdayService
-    - Notification må vise at service har starter og kjører
-    - Må lage funksjonalitet som håndterer bursdager daglig
-        - Hver dag skal det sjekkes hvilken venner som har bursdag.
-        - Alarmmanager styrer scheduling - Ref widgetfoiler.pdf
-        - Gi notifikasjon når det sendes en melding.
-
-
-
-
-

@@ -1,6 +1,7 @@
 package com.example.s198599.s198599_mappe2;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,9 @@ public class MyFriends extends AppCompatActivity
     private MenuItem deleteMenuItem;
     private final static int NEW_PERSON_REQUEST = 1;
     private final static int EDIT_PERSON_REQUEST = 2;
+
+    public static final String PROVIDER = "com.example.s198599.s198599_mappe2.content_provider";
+    public static final Uri CONTENT_URI = Uri.parse("content://" + PROVIDER + "/person");
 
 
     @Override
